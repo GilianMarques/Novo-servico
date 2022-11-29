@@ -1,0 +1,278 @@
+﻿<Window
+    x:Class="ui.TelaPrincipal"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+    xmlns:local="clr-namespace:ui"
+    mc:Ignorable="d"
+    Title="Serviços"
+    WindowState="Normal"
+    WindowStyle="ThreeDBorderWindow"
+    ResizeMode="CanResize"
+    Closed="forcarFechamentoDoApp"
+    Width="1200"
+    Height="550"
+    d:DesignHeight="1080"
+    d:DesignWidth="1920"
+    Icon="/ui/trello.png">
+    <Grid
+        HorizontalAlignment="Stretch">
+
+        <StackPanel
+            x:Name="stackMenu"
+            VerticalAlignment="Top"
+            Orientation="Horizontal"
+            HorizontalAlignment="Stretch"
+            Height="30"
+            Background="{Binding Background, ElementName=menuApi}">
+            <Menu
+                x:Name="menuApi"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+                <MenuItem
+                    Header="APIs"
+                    Icon="{materialDesign:PackIcon Kind=Api}"
+                    Height="30"
+                    FontSize="12"
+                    VerticalContentAlignment="Center">
+
+                    <MenuItem
+                        Margin="0,4,0,0"
+                        Header="Autenticar Trello"
+                        Click="autenticarTrello"
+                        ToolTip="Faça login no Trello e autorize esse app a criar e editar cartões em seu nome."
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=Trello}">
+
+                    </MenuItem>
+
+                    <MenuItem
+                        Header="Autenticar Conta Azul"
+                        Click="autenticarContaAzul"
+                        ToolTip="Faça login no Conta Azul e autorize esse app a acessar os dados."
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=BarChart}"></MenuItem>
+
+                    <MenuItem
+                        Header="Verificar status"
+                        Click="verificarStatusApis"
+                        ToolTip="Verifica o estado de autenticação e funcionamento das APIs e atualiza as informações referentes no redapé do programa"
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=Refresh}"></MenuItem>
+                </MenuItem>
+
+            </Menu>
+
+            <Menu
+                VerticalAlignment="Stretch"
+                x:Name="menuTrello"
+                HorizontalContentAlignment="Stretch">
+                <MenuItem
+                    Header="Opções do Trello"
+                    Icon="{materialDesign:PackIcon Kind=Trello}"
+                    Height="30"
+                    FontSize="12"
+                    VerticalContentAlignment="Center">
+
+                    <MenuItem
+                        Margin="0,4,0,0"
+                        Header="Alterar ID da lista"
+                        Click="mudarIdDaLista"
+                        ToolTip="Id da lista onde o cartão do serviço será criado no Trello."
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=FormatListGroup}"></MenuItem>
+
+                    <MenuItem
+                        Header="Etiquetas do cartão"
+                        Click="mudarEtiquetas"
+                        ToolTip="Defina as Ids das etiquetas que serão adicionadas ao catão do serviço por padrão."
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=LabelOutline}" />
+
+                    <MenuItem
+                        Header="Alterar descrição de item"
+                        Click="mudarDescricaoItem"
+                        ToolTip="Edite o texto que envolve cada item do serviço na descrição de Trello. Você não quer fazer isso..."
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=CommentOutline}" />
+
+                    <MenuItem
+                        Header="Alterar linha de Id do Conta Azul"
+                        Click="mudarLinhaDeIdDoServicoNoContaAzul"
+                        ToolTip="Altera a última linha da descrição do serviço no Trello onde fica o número/link para a OS no ContaAzul"
+                        ToolTipService.InitialShowDelay="800"
+                        ToolTipService.ShowDuration="60000"
+                        Icon="{materialDesign:PackIcon Kind=CommentOutline}" />
+
+                </MenuItem>
+
+            </Menu>
+
+            <Menu
+                x:Name="menuservicos"
+                VerticalAlignment="Stretch"
+                HorizontalContentAlignment="Stretch">
+                <MenuItem
+                    Header="Novo serviço"
+                    Icon="{materialDesign:PackIcon Kind=FolderAddOutline}"
+                    Height="30"
+                    FontSize="12"
+                    VerticalContentAlignment="Center">
+
+                    <MenuItem
+                        Margin="0,4,0,0"
+                        Header="Com OS"
+                        Click="novoServicoComOs"
+                        Icon="{materialDesign:PackIcon Kind=FileOutline}">
+
+                    </MenuItem>
+
+                    <MenuItem
+                        Header="Sem OS"
+                        Click="novoServicoSemOs"
+                        Icon="{materialDesign:PackIcon Kind=FileAlertOutline}"></MenuItem>
+                </MenuItem>
+
+            </Menu>
+
+            <MenuItem
+                Header="Ir ao Conta Azul"
+                x:Name="alternarSite"
+                Icon="{materialDesign:PackIcon Kind=web}"
+                HorizontalContentAlignment="Stretch"
+                FontSize="12"
+                Click="alternarSite_Click"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center" />
+
+            <MenuItem
+                Header="Pesquisar serviços"
+                x:Name="perquisarServicos"
+                Icon="{materialDesign:PackIcon Kind=Search}"
+                HorizontalContentAlignment="Stretch"
+                FontSize="12"
+                Click="pesquisarServicos"
+                VerticalContentAlignment="Center"
+                VerticalAlignment="Center" />
+
+         
+        </StackPanel>
+
+           
+        <Grid
+            x:Name="gridCenter"
+            Margin="0,30,0,25"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+
+      
+
+            <Grid
+                x:Name="gridWebView"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Margin="0,0,0,0">
+
+                <ProgressBar
+                    Style="{StaticResource MaterialDesignCircularProgressBar}"
+                    Value="0"
+                    x:Name="webProgressbar"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="48"
+                    Height="48"
+                    IsIndeterminate="True" />
+
+                <Wpf:WebView2
+                    x:Name="webViewContaAzul"
+                    Margin="0,0,0,0"
+                    Visibility="Hidden"
+                    Source="https://app.contaazul.com/#/vendas-e-orcamentos" />
+
+                <Wpf:WebView2
+                    x:Name="webViewTrello"
+                    Margin="0,0,0,0"
+                    Visibility="Hidden"
+                    Source="https://trello.com/b/cjr5zYlv/composi%C3%A7%C3%A3o-servi%C3%A7os" />
+
+            </Grid>
+
+        </Grid>
+
+        <StackPanel
+            x:Name="stackStatus"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Background="WhiteSmoke"
+            Height="25">
+
+            <Button
+                Content="Status Trello:"
+                x:Name="lblTrelloStatus"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                Margin="8,2,8,2"
+                FontSize="10"
+                Foreground="Black"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                BorderThickness="0"
+                Cursor="Hand" />
+
+            <Button
+                x:Name="lblContaAzulStatus"
+                Content="Status Conta Azul:"
+                Background="Transparent"
+                Margin="8,2,8,2"
+                FontSize="10"
+                Foreground="Black"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Right"
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                Cursor="Hand" />
+
+            <Button
+                Content="Caminho"
+                x:Name="btnServerPath"
+                Click="mudarCaminhoDoServidor"
+                Background="Transparent"
+                Margin="8,2,8,2"
+                FontSize="10"
+                Foreground="Black"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Left"
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                Cursor="Hand" />
+
+            <Button
+                x:Name="btntemplatePath"
+                Content="Caminho"
+                Background="Transparent"
+                Click="mudarCaminhoPraPastaDeTemplate"
+                HorizontalAlignment="Left"
+                FontSize="10"
+                Foreground="Black"
+                HorizontalContentAlignment="Left"
+                VerticalContentAlignment="Center"
+                BorderThickness="0"
+                VerticalAlignment="Center"
+                Cursor="Hand"
+                Margin="8,2,8,2" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>

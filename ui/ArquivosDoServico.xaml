@@ -1,0 +1,156 @@
+﻿<Window
+    x:Class="ui.ArquivosDoServico"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="Arquivos do serviço"
+    ResizeMode="CanResize"
+    Width="290"
+    Height="600"
+    Icon="/ui/pasta-aberta.png">
+
+    <Grid>
+        <Grid
+            Background="White"
+            x:Name="gridFileExplorer"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Stretch">
+
+            <WrapPanel
+                x:Name="wpFileNavControls"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+
+                <Button
+                    x:Name="btnFileVoltar"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Voltar para a última pasta"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Margin="8"
+                    Width="24"
+                    Click="navegarArquivos"
+                    Height="24">
+                    <materialDesign:PackIcon
+                        Kind="ArrowLeft"
+                        Width="12"
+                        Height="12" />
+
+                </Button>
+
+                <Button
+                    x:Name="btnFileHome"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Ir para a pasta raiz do serviço"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Margin="8"
+                    Click="navegarArquivos"
+                    Width="24"
+                    Height="24">
+                    <materialDesign:PackIcon
+                        Kind="HomeOutline"
+                        Width="15"
+                        Height="15" />
+
+                </Button>
+
+                <Button
+                    x:Name="btnFileAvancar"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Avançar para a próxima pasta (última pasta vista)"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Margin="8"
+                    Click="navegarArquivos"
+                    Width="24"
+                    Height="24">
+                    <materialDesign:PackIcon
+                        Kind="ArrowRight"
+                        Width="12"
+                        Height="12" />
+
+                </Button>
+
+                <Button
+                    x:Name="btnAbriPasta"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Abrir pasta raiz do serviço no Windows Explorer"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Margin="8"
+                    Click="abrirPasta"
+                    Width="24"
+                    Height="24">
+                    <materialDesign:PackIcon
+                        Kind="OpenInNew"
+                        Width="12"
+                        Height="12" />
+
+                </Button>
+
+                <Menu
+                    VerticalAlignment="Center"
+                    Width="48"
+                    Background="Transparent">
+                    <MenuItem
+                        Height="24"
+                        Icon="{materialDesign:PackIcon Kind=DotsVertical}">
+
+                        <MenuItem
+                            Header="Anexar OS"
+                            Click="anexarOs"
+                            Background="White"
+                            ToolTip="Atualiza o cartão do serviço no Trello baseado nas informações da OS."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=ClipboardFileOutline}" />
+
+                        <MenuItem
+                            Header="Clonar"
+                            Background="White"
+                            ToolTip="Faz uma cópia desse serviço no servidor com o próximo número disponível e cria um cartão no trello."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Click="clonarServico"
+                            Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
+
+                        <MenuItem
+                            Header="Renomear"
+                            Background="White"
+                            ToolTip="Renomeia a pasta e os arquivos deste serviço, atualizando o cartão no Trello no processo."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Click="renomearServico"
+                            Icon="{materialDesign:PackIcon Kind=Rename}" />
+
+                        <MenuItem
+                            Header="Ver OS"
+                            Background="White"
+                            ToolTip="Abre a OS do serviço."
+                            Click="abrirOs"
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=FileOutline}" />
+
+                        <MenuItem
+                            Header="Criar parcial"
+                            Background="White"
+                            ToolTip="Cria um cartão parcial do item selecionado e o conecta com o cartão do serviço. Util para acompanhar serviços feitos por partes."
+                            Click="CriarCartaoParcial"
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=Trello}" />
+
+                    </MenuItem>
+
+                </Menu>
+
+            </WrapPanel>
+
+            <WebBrowser
+                Margin="0,40,0,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                x:Name="wbArquivos" />
+
+        </Grid>
+    </Grid>
+</Window>

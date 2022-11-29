@@ -1,0 +1,90 @@
+﻿<Window x:Class="ui.NovoServicoSemOs"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ui"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="Novo serviço sem OS"
+        SizeToContent="WidthAndHeight">
+
+    <Grid>
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    
+                    >
+
+            <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     AcceptsReturn="false"
+                     x:Name="tbName"
+                     TextWrapping="Wrap"
+                     MaxLines="1"
+                     Background="White"
+                     materialDesign:HintAssist.Hint="Digite o nome do serviço "
+                     IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                     Cursor="IBeam"
+                     HorizontalContentAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     MinWidth="380"
+                     Margin="16,24,16,8" />
+
+            <WrapPanel Orientation="Horizontal"
+                       HorizontalAlignment="Center">
+               
+                <!-- serve pra manter o botao centralizado, deve ser identico ao cbox q fica visivel -->
+                <CheckBox x:Name="guideline"
+                          Visibility="Hidden"
+                          Content="Add ao Trello"
+                          Width="auto"
+                          Height="30"
+                          Margin="8,8,8,8"
+                          Style="{StaticResource MaterialDesignCheckBox}"
+                          FontSize="10"
+                          HorizontalContentAlignment="Center" />
+
+                <materialDesign:Chip x:Name="cpConclude"
+                                     Content=" Concluir"
+                                     IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                                     IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                     Height="32"
+                                     Margin="8,8,8,8"
+                                     HorizontalAlignment="Center"
+                                     Click="executarTarefa"
+                                     HorizontalContentAlignment="Center"
+                                     Cursor="Hand">
+
+                    <materialDesign:Chip.Icon>
+                        <materialDesign:PackIcon Kind="Done"
+                                                 VerticalAlignment="Stretch" />
+                    </materialDesign:Chip.Icon>
+
+                </materialDesign:Chip>
+
+                <CheckBox x:Name="cbAddToTrello2"
+                          Content="Add ao Trello"
+                          Width="auto"
+                          Height="30"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Bottom"
+                          Margin="8,8,8,8"
+                          IsChecked="True"
+                          Style="{StaticResource MaterialDesignCheckBox}"
+                          FontSize="10"
+                          HorizontalContentAlignment="Center" />
+
+            </WrapPanel>
+
+            <ProgressBar Height="5"
+                         x:Name="pbar"
+                         Margin="0,8,0,0"
+                         VerticalAlignment="Bottom"
+                         VerticalContentAlignment="Center"
+                         HorizontalContentAlignment="Stretch"
+                         HorizontalAlignment="Stretch" />
+
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,111 @@
+﻿<Window
+    x:Class="ui.AnexarOS"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ui"
+    mc:Ignorable="d"
+    WindowStartupLocation="CenterScreen"
+    Title="AnexarOS"
+    SizeToContent="WidthAndHeight">
+    <Grid>
+        <StackPanel
+            Orientation="Vertical"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <Label
+                Margin="0,16,0,8"
+                DockPanel.Dock="Right"
+                FontWeight="Medium"
+                FontSize="13"
+                HorizontalContentAlignment="Center"
+                Foreground="Black"
+                HorizontalAlignment="Stretch">
+                <TextBlock
+                    TextTrimming="CharacterEllipsis"
+                    x:Name="lblBlockNomeServico">SERVIÇO 3941 - PREMIUM PETISQUEIRA THEREZÓPOLIS</TextBlock>
+            </Label>
+
+            <StackPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="8,0,8,16">
+                <TextBox
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    AcceptsReturn="false"
+                    x:Name="tbNumOs"
+                    TabIndex="1"
+                    TextWrapping="Wrap"
+                    MaxLines="1"
+                    Background="White"
+                    materialDesign:HintAssist.Hint="Digite o n° da OS"
+                    Cursor="IBeam"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    MinWidth="3"
+                    Width="176"
+                    Margin="8,8,8,8"
+                    TextChanged="tbNumOs_TextChanged" />
+
+                <DatePicker
+                    x:Name="tbData"
+                    MinWidth="250"
+                    Margin="8,8,8,8"
+                    HorizontalContentAlignment="Center"
+                    materialDesign:HintAssist.HelperText="° Verifique a data antes de prosseguir."
+                    materialDesign:HintAssist.Hint="Data estimada de entrega"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            </StackPanel>
+
+            <materialDesign:Chip
+                x:Name="cpConclude"
+                Content=" Anexar OS"
+                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                Height="32"
+                Margin="0,12,0,0"
+                TabIndex="2"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Click="executarTarefa"
+                HorizontalContentAlignment="Center"
+                Cursor="Hand">
+
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon
+                        Kind="Done"
+                        VerticalAlignment="Stretch" />
+                </materialDesign:Chip.Icon>
+
+            </materialDesign:Chip>
+
+            <Label
+                Content=""
+                x:Name="lblStatus"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Height="15"
+                HorizontalContentAlignment="Center"
+                Margin="0,12,0,12"
+                Padding="0,0,0,0"
+                VerticalContentAlignment="Center"
+                FontSize="11"
+                FontWeight="Light"
+                Foreground="#DD272727" />
+
+            <ProgressBar
+                Height="5"
+                x:Name="pbar"
+                VerticalAlignment="Bottom"
+                VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Stretch"
+                HorizontalAlignment="Stretch" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>

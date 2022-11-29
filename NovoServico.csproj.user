@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>W:\# Gilian\SOFTWARE\source_novoServico\NovoServico\Properties\PublishProfiles\FolderProfile1.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="conta.azul\ContaAzulAuth.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="trello\TrelloAuth.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\AnexarOS.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\ArquivosDoServico.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\ClonarServico.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\CriarParcial.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\TelaPrincipal.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\NovoServicoComOS.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\NovoServicoSemOs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\ControleServico.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ui\RenomearServico.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="conta.azul\ContaAzulAuth.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\ArquivosDoServico.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\ClonarServico.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\CriarParcial.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\ListaDeServicos.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="trello\TrelloAuth.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\AnexarOS.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\TelaPrincipal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\NovoServicoComOS.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\NovoServicoSemOs.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\ControleServico.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ui\RenomearServico.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

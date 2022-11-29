@@ -1,0 +1,161 @@
+﻿<UserControl
+    x:Class="ui.ControleServico"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:local="clr-namespace:ui"
+    mc:Ignorable="d"
+    d:DesignHeight="75"
+    d:DesignWidth="360"
+    Width="360"
+    Height="75">
+    <Grid>
+        <StackPanel
+            Orientation="Vertical"
+            x:Name="parent"
+            VerticalAlignment="Stretch"
+            MouseLeftButtonDown="abrirPasta"
+            Background="White">
+
+            <DockPanel
+                HorizontalAlignment="Stretch"
+                Margin="0,6,0,4">
+
+                <Menu
+                    DockPanel.Dock="Left"
+                    VerticalAlignment="Center"
+                    Width="48"
+                    Background="Transparent">
+                    <MenuItem
+                        Height="24"
+                        Icon="{materialDesign:PackIcon Kind=DotsVertical}">
+
+                        <MenuItem
+                            Header="Anexar OS"
+                            Click="anexarOs"
+                            Background="White"
+                            ToolTip="Atualiza o cartão do serviço no Trello baseado nas informações da OS."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=ClipboardFileOutline}" />
+
+                        <MenuItem
+                            Header="Clonar"
+                            Background="White"
+                            ToolTip="Faz uma cópia desse serviço no servidor com o próximo número disponível e cria um cartão no trello."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Click="clonarServico"
+                            Icon="{materialDesign:PackIcon Kind=ContentCopy}" />
+
+                        <MenuItem
+                            Header="Renomear"
+                            Background="White"
+                            ToolTip="Renomeia a pasta e os arquivos deste serviço, atualizando o cartão no Trello no processo."
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Click="renomearServico"
+                            Icon="{materialDesign:PackIcon Kind=Rename}" />
+
+                        <MenuItem
+                            Header="Ver OS"
+                            Background="White"
+                            ToolTip="Abre a OS do serviço."
+                            Click="abrirOs"
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=FileOutline}" />
+
+                        <MenuItem
+                            Header="Ver cartão"
+                            Background="White"
+                            ToolTip="Abre o cartão do serviço."
+                            Click="abrirCartao"
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=Trello}" />
+
+                        <MenuItem
+                            Header="Criar parcial"
+                            Background="White"
+                            ToolTip="Cria um cartão parcial do item selecionado e o conecta com o cartão do serviço. Util para acompanhar serviços feitos por partes."
+                            Click="CriarCartaoParcial"
+                            ToolTipService.InitialShowDelay="800"
+                            ToolTipService.ShowDuration="60000"
+                            Icon="{materialDesign:PackIcon Kind=Trello}" />
+
+                    </MenuItem>
+
+                </Menu>
+
+                <Label
+                    Margin="8,0,4,0"
+                    DockPanel.Dock="Right"
+                    FontWeight="Medium"
+                    FontSize="13"
+                    Foreground="Black"
+                    HorizontalAlignment="Stretch">
+                    <TextBlock
+                        TextTrimming="CharacterEllipsis"
+                        x:Name="lblBlockNomeServico">SERVIÇO 3941 - PREMIUM PETISQUEIRA THEREZÓPOLIS</TextBlock>
+                </Label>
+
+            </DockPanel>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Left"
+                Margin="48,8,4,0">
+
+                <Label
+                    VerticalContentAlignment="Center"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Content="LAYOUT"
+                    x:Name="btnLayout"
+                    Height="20"
+                    MouseLeftButtonDown="abrirLayout"
+                    FontSize="9"
+                    Padding="8,0,8,0"
+                    Margin="6,0,6,0"
+                    Cursor="Hand" />
+
+                <Label
+                    VerticalContentAlignment="Center"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Content="CORTE"
+                    MouseLeftButtonDown="abrirCorte"
+                    x:Name="btnCorte"
+                    Height="20"
+                    FontSize="9"
+                    Padding="8,0,8,0"
+                    Margin="6,0,6,0" />
+
+                <Label
+                    VerticalContentAlignment="Center"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    Content="IMPRESSÃO"
+                    MouseLeftButtonDown="abrirImpressao"
+                    x:Name="btnImpressao"
+                    Height="20"
+                    FontSize="9"
+                    Padding="8,0,8,0"
+                    Margin="6,0,6,0"
+                    Cursor="Hand" />
+
+            </StackPanel>
+
+            <Label
+                HorizontalAlignment="Stretch"
+                Height="1"
+                VerticalAlignment="Bottom"
+                Background="#FFD8D8D8"
+                Visibility="Hidden"
+                Margin="48,0,0,0" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,119 @@
+﻿<Window
+    x:Class="ui.ClonarServico"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ui"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d"
+    MinWidth="390"
+    Title="Clonar serviço"
+    SizeToContent="WidthAndHeight">
+
+    <Grid>
+        <StackPanel
+            Orientation="Vertical"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+  <Label
+                Margin="0,16,0,0"
+                DockPanel.Dock="Right"
+                FontWeight="Medium"
+                FontSize="13"
+                HorizontalContentAlignment="Center"
+                Foreground="Black"
+                HorizontalAlignment="Stretch">
+                <TextBlock
+                    TextTrimming="CharacterEllipsis"
+                    x:Name="lblBlockNomeServico">SERVIÇO 3941 - PREMIUM PETISQUEIRA THEREZÓPOLIS</TextBlock>
+            </Label>
+            <WrapPanel
+                Orientation="Horizontal"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch">
+                <TextBox
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    AcceptsReturn="false"
+                    x:Name="tbNumOs"
+                    TabIndex="1"
+                    TextWrapping="Wrap"
+                    MaxLines="1"
+                    Background="White"
+                    materialDesign:HintAssist.Hint="Digite o n° da OS (opcional)"
+                    IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextBoxEnabledComboBox}"
+                    Cursor="IBeam"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    MinWidth="200"
+                    TextChanged="tbNumOs_TextChanged"
+                    Margin="16,24,16,8" />
+
+                <DatePicker
+                    x:Name="tbData"
+                    MinWidth="280"
+                    Margin="16,24,16,8"
+                    HorizontalContentAlignment="Center"
+                    materialDesign:HintAssist.Hint="Data estimada de entrega"
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+               
+           
+            </WrapPanel>
+  
+            <Label Content="° A data de entrega considera apenas sábados e domingos, adicione +1 dia para cada feriado no periodo."
+                   x:Name="lblDataInfo"
+                   HorizontalAlignment="Left"
+                   Visibility="Hidden"
+                   Margin="16,0,8,8"
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   FontSize="10"
+                   FontWeight="Medium"
+                   Foreground="#DD272727" />
+            
+            <materialDesign:Chip
+                x:Name="cpConclude"
+                Content=" Clonar sem OS"
+                IconBackground="{DynamicResource PrimaryHueDarkBrush}"
+                IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                Height="32"
+                Margin="8,16,8,8"
+                HorizontalAlignment="Center"
+                Click="executarTarefa"
+                HorizontalContentAlignment="Center"
+                Cursor="Hand">
+
+                <materialDesign:Chip.Icon>
+                    <materialDesign:PackIcon
+                        Kind="Done"
+                        VerticalAlignment="Stretch" />
+                </materialDesign:Chip.Icon>
+
+            </materialDesign:Chip>
+
+            <Label
+                Content="Clique para clonar sem OS ou digite o número da OS e aguarde."
+                x:Name="lblStatus"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Height="15"
+                HorizontalContentAlignment="Center"
+                Margin="0,12,0,12"
+                Padding="0,0,0,0"
+                VerticalContentAlignment="Center"
+                FontSize="11"
+                FontWeight="Light"
+                Foreground="#DD272727" />
+
+            <ProgressBar
+                Height="5"
+                x:Name="pbar"
+                Margin="0,8,0,0"
+                VerticalAlignment="Bottom"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Stretch" />
+
+        </StackPanel>
+    </Grid>
+</Window>
