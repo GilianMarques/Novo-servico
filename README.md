@@ -14,3 +14,5 @@ Aqui é exibida a função de renomear o serviço. Com alguma frequência é nec
 Também se pode ver a janela de busca de serviços que permite a pesquisa rápida dos serviços direto no servidor da empresa, permitindo ao usuário encontrar o cartão no Trello e o orçamento no Conta Azul a partir de lá
 
 ![Gif 2](https://github.com/GilianMarques/Novo-servico/blob/main/gif%202.gif)
+
+Nota: Os gifs tem um pouco mais de 10mb cada então pode ser que demorem um pouco para serem exibidos.
