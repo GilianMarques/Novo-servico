@@ -27,6 +27,17 @@ internal class UiUtils
         });
 
     }
+    internal static void notificarSemSom(String msg)
+    {
+        Async.runOnUI(() =>
+        {
+            Debug.WriteLine(msg);
+
+            var notificationManager = new NotificationManager();
+            notificationManager.Show("Novo Serviço", msg, NotificationType.None);
+       });
+
+    }
 
     internal static void sucessoMsg(string msg)
     {

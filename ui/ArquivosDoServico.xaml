@@ -71,7 +71,7 @@
                 </Button>
 
                 <Button
-                    x:Name="btnAbriPasta"
+                    x:Name="btnAbrirPasta"
                     Style="{StaticResource MaterialDesignIconButton}"
                     ToolTip="Abrir pasta raiz do serviço no Windows Explorer"
                     Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
@@ -84,6 +84,21 @@
                         Width="12"
                         Height="12" />
 
+                </Button>
+              
+                <Button
+                    x:Name="btnCopiarCaminho"
+                    Style="{StaticResource MaterialDesignIconButton}"
+                    ToolTip="Copia o caminho da pasta para a área de transferência"
+                    Background="{DynamicResource MaterialDesignTextFieldBoxBackground}"
+                    Margin="8"
+                    Click="copiarCaminho"
+                    Width="24"
+                    Height="24">
+                    <materialDesign:PackIcon
+                        Kind="ClipboardOutline"      
+                        Width="12"
+                        Height="12" />
                 </Button>
 
                 <Menu

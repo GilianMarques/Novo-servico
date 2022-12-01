@@ -122,6 +122,11 @@ namespace ui
 
         private void CriarCartaoParcial(object sender, RoutedEventArgs e) => mControleServico.CriarCartaoParcial(null, null);
 
+        private void copiarCaminho(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(caminhoDoServicoAtual?.LocalPath.ToString());
+            UiUtils.notificarSemSom("Caminho copiado para a área de transferência");
+        }
     }
 }
 
