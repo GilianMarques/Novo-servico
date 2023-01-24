@@ -22,8 +22,10 @@ public class ProgramSp
 
         // verifica se existe a pasta de dados do app e cria se n existir
         Directory.CreateDirectory(Preferencias.rootFolder);
+      
         //tbm verifica e cria  as pastas no caminho para as preferencias alem de inicializar o singleton
         if (!Directory.Exists(Preferencias.inst().caminhoDasConfiguracoes)) new FileInfo(Preferencias.inst().caminhoDasConfiguracoes).Directory!.Create();
+   
     }
 }
 

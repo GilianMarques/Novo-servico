@@ -126,7 +126,7 @@ namespace ui
 
         private void verificarValidadeDoApp()
         {
-            var lancamento = new DateTime(2022, 6, 10, 9, 00, 00, DateTimeKind.Local);
+            var lancamento = new DateTime(2023, 1, 1, 9, 00, 00, DateTimeKind.Local);
             var vencimento = lancamento.AddYears(1);
             var hoje = DateTime.Now;
 

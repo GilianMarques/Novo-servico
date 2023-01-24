@@ -31,14 +31,14 @@ namespace conta_azul
         // nesse site da pra ciar post requests e gerar o codigo em c#
         // https://reqbin.com/req/csharp/zvtstmpb/post-request-examplem
 
-        private readonly String CLIENT_ID = "Seus_dados_aqui";
-        private readonly String CLIENT_SECRET = "Seus_dados_aqui";
-        private readonly String REDIRECT_URI = "Seus_dados_aqui";
+        private readonly String CLIENT_ID = ChavesApi.CLIENT_ID;
+        private readonly String CLIENT_SECRET = ChavesApi.CLIENT_SECRET;
+        private readonly String REDIRECT_URI = ChavesApi.REDIRECT_URI;
 
 
 
-        private readonly String SCOPE = "sales";
-        private readonly String STATE = "anyRanomState@654vsr";
+        private readonly String SCOPE = ChavesApi.SCOPE;
+        private readonly String STATE = ChavesApi.STATE;
 
         public ContaAzulAuth()
         {
@@ -86,7 +86,7 @@ namespace conta_azul
                 httpRequest.Headers["Authorization"] = "Basic " + EncodeBase64(CLIENT_ID + ":" + CLIENT_SECRET);
                 httpRequest.ContentType = "application/x-www-form-urlencoded";
 
-                var data = "redirect_uri=https%3A%2F%2F<Seus_dados_aqui>%2F&code=" + code + "&grant_type=authorization_code";
+                var data = "redirect_uri=https%3A%2F%2Fwww.composicao-es.com%2F&code=" + code + "&grant_type=authorization_code";
 
                 using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
                 {

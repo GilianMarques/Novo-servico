@@ -26,6 +26,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Timer = System.Timers.Timer;
 using Card = trello.modelos.TrelloCard;
+using domain;
 
 namespace ui
 {
@@ -127,13 +128,7 @@ namespace ui
 
         private void criarServico()
         {
-            string clientName = tbName.Text.ToUpper().Trim();
-
-            var regexBreakline = new Regex(@"(\r\n?|\r?\n)+");
-            var regexMultSpaces = new Regex(@"[ ]+");
-
-            clientName = regexBreakline.Replace(clientName, "");
-            clientName = regexMultSpaces.Replace(clientName, " ");
+            string clientName = Nome.aplicarRegras(tbName.Text);
 
             lblStatus.Content = "Criando pastas no servidor...";
 

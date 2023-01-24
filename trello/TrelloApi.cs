@@ -27,13 +27,13 @@ namespace CriadorDePastas.trello
     // ajuda: https://code-maze.com/different-ways-consume-restful-api-csharp/
     public class TrelloApi
     {
-        private static String KEY = Preferencias.inst().getString(Preferencias.trelloKey, "Seus_dados_aqui")!;
-        private static String OAUTH_SECRET = Preferencias.inst().getString(Preferencias.trelloOAtuhSecret, "Seus_dados_aqui")!;
+        private static String KEY = Preferencias.inst().getString(Preferencias.trelloKey, ChavesApi.trelloKey)!;
+        private static String OAUTH_SECRET = Preferencias.inst().getString(Preferencias.trelloOAtuhSecret, ChavesApi.trelloOAtuhSecret)!;
 
-        private static string semOsLabel = Preferencias.inst().getString(Preferencias.trelloSemOsLabel, "Seus_dados_aqui")!;
-        private static string parcialLabel = Preferencias.inst().getString(Preferencias.trelloParcialLabel, "Seus_dados_aqui")!;
-        private static string quadroId = Preferencias.inst().getString(Preferencias.trelloQuadroId, "Seus_dados_aqui")!;
-        public static string listaEmAndamento = Preferencias.inst().getString(Preferencias.trelloListaEmAndamento, "Seus_dados_aqui")!;
+        private static string semOsLabel = Preferencias.inst().getString(Preferencias.trelloSemOsLabel, ChavesApi.trelloSemOsLabel)!;
+        private static string parcialLabel = Preferencias.inst().getString(Preferencias.trelloParcialLabel, ChavesApi.trelloParcialLabel)!;
+        private static string quadroId = Preferencias.inst().getString(Preferencias.trelloQuadroId, ChavesApi.trelloQuadroId)!;
+        public static string listaEmAndamento = Preferencias.inst().getString(Preferencias.trelloListaEmAndamento, ChavesApi.trelloListaEmAndamento)!;
 
         string? userToken;
 
@@ -62,7 +62,7 @@ namespace CriadorDePastas.trello
             }
             catch (Exception e)
             {
-                return  "Status Trello: Erro: " + e.Message;
+                return "Status Trello: Erro: " + e.Message;
             }
 
         }
@@ -93,7 +93,7 @@ namespace CriadorDePastas.trello
             }
         }
 
-        public void criarCartaoComOs(string nomePasta, OrdemDeVenda ordemDeVenda, String descricao,Action<String?, String?> callback)
+        public void criarCartaoComOs(string nomePasta, OrdemDeVenda ordemDeVenda, String descricao, Action<String?, String?> callback)
         {
             var now = DateTime.Now;
 

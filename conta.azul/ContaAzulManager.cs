@@ -103,12 +103,12 @@ public class ContaAzulManager
         else
         {
             Debug.WriteLine($":: ordens encontradas: {vendas.Length}");
-            
+
             OrdemDeVenda? vendaAlvo = null;
 
             for (int i = 0; i < vendas.Length; i++)
             {
-              //  Debug.WriteLine(":: " + i + " " + vendas[i].Number + " " + vendas[i].Customer.Name + " " + vendas[i].Emission.ToString());
+                //  Debug.WriteLine(":: " + i + " " + vendas[i].Number + " " + vendas[i].Customer.Name + " " + vendas[i].Emission.ToString());
 
                 if (vendas[i].Number.ToString() == numOs)
                 {
@@ -138,18 +138,26 @@ public class ContaAzulManager
 
 
 
-        HttpResponse<String> response = Unirest.get("https://api.contaazul.com/v1/sales?emission_start=" + emissionStat + "&emission_end=" + emissionEnd + "&size=" + limiteDeOrdens)
+        try
+        {
+            HttpResponse<String> response = Unirest.get("https://api.contaazul.com/v1/sales?emission_start=" + emissionStat + "&emission_end=" + emissionEnd + "&size=" + limiteDeOrdens)
                     .header("Accept", "application/json")
                     .header("Authorization", "Bearer " + credenciais.AccessToken)
                    .asString();
 
 
-        if (response.Code != 200)
+            if (response.Code != 200)
+            {
+                erro = "Erro baixando dados do Conta Azul\n\n" + response.Code + ": " + response.Body;
+                return null;
+            }
+            else return OrdemDeVenda.FromJson(response.Body.ToString()).ToArray();
+        }
+        catch (Exception e)
         {
-            erro = "Erro baixando dados do Conta Azul\n\n" + response.Code + ": " + response.Body;
+            erro = e.StackTrace;
             return null;
         }
-        else return OrdemDeVenda.FromJson(response.Body.ToString()).ToArray();
 
     }
 

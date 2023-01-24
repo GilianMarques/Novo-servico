@@ -1,5 +1,6 @@
 ﻿using conta.azul.modelos;
 using CriadorDePastas.trello;
+using domain;
 using FileIO;
 using outros;
 using System;
@@ -45,19 +46,12 @@ namespace ui
 
         private void criarServico()
         {
-            string clientName = tbName.Text.ToUpper().Trim();
-
-            var regexBreakline = new Regex(@"(\r\n?|\r?\n)+");
-            var regexMultSpaces = new Regex(@"[ ]+");
-
-            clientName = regexBreakline.Replace(clientName, "");
-            clientName = regexMultSpaces.Replace(clientName, " ");
+            string clientName = Nome.aplicarRegras(tbName.Text);
 
             Async.runAsync(action);
             void action()
             {
                 new Pastas().criarPastaDeServico(clientName, pastaCriada);
-
             }
         }
 
@@ -66,9 +60,9 @@ namespace ui
 
             Async.runOnUI(() =>
             {
-                if (erro != null) UiUtils.erroMsg(this.GetType().Name,erro);
+                if (erro != null) UiUtils.erroMsg(this.GetType().Name, erro);
                 else
-                { 
+                {
 
                     telaPrincipal.listaDeServicos?.carregarServicos();
                     if ((bool)cbAddToTrello2.IsChecked!) criarCartaoNoTrello(Path.GetFileName(caminho), caminho);
@@ -88,7 +82,7 @@ namespace ui
                 {
                     Async.runOnUI(() =>
                     {
-                        if (erro != null) UiUtils.erroMsg(this.GetType().Name,erro);
+                        if (erro != null) UiUtils.erroMsg(this.GetType().Name, erro);
                         else telaPrincipal.webViewTrello.Source = new Uri(url!);
 
                         animarEsair(caminho);

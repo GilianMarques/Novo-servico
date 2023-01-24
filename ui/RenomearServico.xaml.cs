@@ -24,6 +24,7 @@ using Windows.Storage;
 using Path = System.IO.Path;
 using SystemProperties = Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties;
 using System.Collections;
+using domain;
 
 namespace ui
 {
@@ -87,7 +88,7 @@ namespace ui
                 if (usos.Count > 0)
                 {
                     fechar(0, false);
-                    UiUtils.erroMsg(this.GetType().Name,"Feche os seguintes arquivos para prosseguir:\n\n" + String.Join("\n", usos.ToArray()));
+                    UiUtils.erroMsg(this.GetType().Name, "Feche os seguintes arquivos para prosseguir:\n\n" + String.Join("\n", usos.ToArray()));
                 }
                 else
                 {
@@ -97,10 +98,10 @@ namespace ui
                     {
                         if (erro != null)
                         {
-                            UiUtils.erroMsg(this.GetType().Name,"Erro buscando pelo cartão do serviço no Trello: " + erro);
+                            UiUtils.erroMsg(this.GetType().Name, "Erro buscando pelo cartão do serviço no Trello: " + erro);
                             atualizarInfo("O cartão pode existir ou não...", false, true);
                         }
-                        else if (cartao == null) { atualizarInfo("O cartão do serviço não foi encontrado...", false, true); UiUtils.erroMsg(this.GetType().Name,"O cartão do serviço não foi encontrado!"); }
+                        else if (cartao == null) { atualizarInfo("O cartão do serviço não foi encontrado...", false, true); UiUtils.erroMsg(this.GetType().Name, "O cartão do serviço não foi encontrado!"); }
                         else { atualizarInfo("Tudo pronto!", false, true); this.cartao = cartao; }
                     });
                 }
@@ -113,18 +114,14 @@ namespace ui
         {
             if (tbName.Text.Length > 0 && tbName.Text != nomeCliente)
             {
-                var regexBreakline = new Regex(@"(\r\n?|\r?\n)+");
-                var regexMultSpaces = new Regex(@"[ ]+");
 
-                novoNomeCliente = tbName.Text.ToUpper().Trim();
-                novoNomeCliente = regexBreakline.Replace(novoNomeCliente, "");
-                novoNomeCliente = regexMultSpaces.Replace(novoNomeCliente, " ");
+                novoNomeCliente = Nome.aplicarRegras(tbName.Text);
 
                 novoCaminhoServico = Directory.GetParent(caminhoServico)!.FullName + Path.DirectorySeparatorChar + nomeServico.Replace(nomeCliente, novoNomeCliente);
 
                 Async.runAsync(() => { renomearServico(); });
             }
-            else UiUtils.erroMsg(this.GetType().Name,"Verifique o nome.");
+            else UiUtils.erroMsg(this.GetType().Name, "Verifique o nome.");
         }
 
         /// <summary>
@@ -141,7 +138,7 @@ namespace ui
             var usos = verificarSePodeOperar();
             if (usos.Count > 0)
             {
-                UiUtils.erroMsg(this.GetType().Name,"Não é possível renomear porque os seguintes arquivos estão em uso:\n" + String.Join("\n", usos.ToArray()));
+                UiUtils.erroMsg(this.GetType().Name, "Não é possível renomear porque os seguintes arquivos estão em uso:\n" + String.Join("\n", usos.ToArray()));
                 Async.runOnUI(() =>
                 {
                     pbar.Value = 0;
@@ -216,7 +213,7 @@ namespace ui
             }
             catch (Exception e)
             {
-                UiUtils.erroMsg(this.GetType().Name,"Erro na pasta raiz: " + caminhoServico + ". Causa: " + e.Message + removerPastaNova());
+                UiUtils.erroMsg(this.GetType().Name, "Erro na pasta raiz: " + caminhoServico + ". Causa: " + e.Message + removerPastaNova());
                 return false;
             }
 
@@ -239,7 +236,7 @@ namespace ui
             }
             catch (Exception e)
             {
-                UiUtils.erroMsg(this.GetType().Name,"Erro copiando pastas: " + e.Message + removerPastaNova());
+                UiUtils.erroMsg(this.GetType().Name, "Erro copiando pastas: " + e.Message + removerPastaNova());
                 return false;
             }
         }
@@ -260,7 +257,7 @@ namespace ui
             }
             catch (Exception e)
             {
-                UiUtils.erroMsg(this.GetType().Name,"Erro copiando arquivo: " + e.Message + removerPastaNova());
+                UiUtils.erroMsg(this.GetType().Name, "Erro copiando arquivo: " + e.Message + removerPastaNova());
                 return false;
             }
         }
@@ -294,7 +291,7 @@ namespace ui
             try { Directory.Delete(caminhoServico, true); }
             catch (Exception e)
             {
-                UiUtils.erroMsg(this.GetType().Name,"Erro removendo pasta de serviço com nome antigo. Remova manualmente. Causa: " + e.Message);
+                UiUtils.erroMsg(this.GetType().Name, "Erro removendo pasta de serviço com nome antigo. Remova manualmente. Causa: " + e.Message);
                 try
                 {
                     Process.Start(new ProcessStartInfo()
@@ -321,13 +318,13 @@ namespace ui
                     {
                         if (erro != null)
                         {
-                            UiUtils.erroMsg(this.GetType().Name,"Erro buscando pelo cartão do serviço no Trello: " + erro);
+                            UiUtils.erroMsg(this.GetType().Name, "Erro buscando pelo cartão do serviço no Trello: " + erro);
                             lblStatus.Content = "...Alterações locais ocorreram com sucesso.";
                             fechar();
                         }
                         else if (cartao == null)
                         {
-                            UiUtils.erroMsg(this.GetType().Name,"O cartão de serviço não existe.");
+                            UiUtils.erroMsg(this.GetType().Name, "O cartão de serviço não existe.");
                             lblStatus.Content = "O cartão de serviço não existe.";
 
                             fechar();
@@ -355,7 +352,7 @@ namespace ui
 
                     Async.runOnUI(() =>
                     {
-                        if (erro != null) UiUtils.erroMsg(this.GetType().Name,"Erro renomeando cartão: " + erro);
+                        if (erro != null) UiUtils.erroMsg(this.GetType().Name, "Erro renomeando cartão: " + erro);
                         else
                         {
                             pbar.IsIndeterminate = false;
